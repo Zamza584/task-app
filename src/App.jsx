@@ -1,19 +1,17 @@
-import { useNavigate } from "react-router-dom";
 import './App.css'
-import Home from "./home";
+import Admin from './Admin';
+import Home from './Home';
+import { Routes, Route } from "react-router-dom"
 
 
 function App() {
-  const history = useNavigate();
-  const navigateTo = () => history.push("/home")
 
   return (
     <>
-      
-      <h1>hi</h1>
-      
-      <button onClick={navigateTo} type="button">home</button>
-      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
     </>
   )
 }
