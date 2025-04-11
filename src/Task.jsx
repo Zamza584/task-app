@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
 
-function Task({ name, onClose, onEdit }) {
+function Task({ name, onClose, onEdit, handleSchedule }) {
     const [isEditing, setIsEditing] = useState(false);
     const [newName, setNewName] = useState(name);
+    const [time, setTime] = useState("")
 
     function handleEdit() {
-        if (isEditing) { 
+        if (isEditing) {
             onEdit(newName)
-        } 
+        }
         setIsEditing(prev => !prev)
     }
 
@@ -29,6 +30,14 @@ function Task({ name, onClose, onEdit }) {
 
             <button onClick={onClose}>remove</button>
             <button onClick={handleEdit}>{isEditing ? "Save" : "Edit"}</button>
+            <button>notify when</button>
+
+            <div>
+                <input type="time" onChange={(e) => {
+                    setTime(e.target.value);
+                }} />
+                <button onClick={() => handleSchedule({ name: newName, time: time })}>schedule</button>
+            </div>
         </>
     )
 }

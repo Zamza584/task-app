@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Task from './Task'
+import ScheduledTasks from './ScheduledTasks'
 
 function Home() {
   const [tasks, setTasks] = useState([])
   const [text, setText] = useState("")
+  const [scheduledTasks, setScheduledTasks] = useState([])
 
   function handleTasks() {
     setTasks(prevTasks => [...prevTasks, { id: Date.now(), name: text }]);
@@ -27,6 +29,10 @@ function Home() {
     )
   }
 
+  function handleSchedule(scheduledTask) {
+    setScheduledTasks(prevTasks => [...prevTasks, scheduledTask])
+  }
+
   return (
     <div>
       <h1>TASK APP</h1>
@@ -47,13 +53,18 @@ function Home() {
       <div className="results">
         {
           tasks.map(task => (
-            <Task key={task.id}
+            <Task
+              key={task.id}
               name={task.name}
               onClose={() => removeTask(task.id)}
               onEdit={(newName) => editTask(task.id, newName)}
+              handleSchedule={handleSchedule}
             />
           ))
         }
+      </div>
+      <div>
+        <ScheduledTasks tasks={scheduledTasks} />
       </div>
     </div>
   )
