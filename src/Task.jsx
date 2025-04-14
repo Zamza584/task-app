@@ -5,6 +5,9 @@ function Task({ name, onClose, onEdit, handleSchedule }) {
     const [isEditing, setIsEditing] = useState(false);
     const [newName, setNewName] = useState(name);
     const [time, setTime] = useState("")
+    const [visibility, setVisibility] = useState({
+        content1: false
+    })
 
     function handleEdit() {
         if (isEditing) {
@@ -12,6 +15,13 @@ function Task({ name, onClose, onEdit, handleSchedule }) {
         }
         setIsEditing(prev => !prev)
     }
+
+    const toggleContent = (content) => {
+        setVisibility(prevState => ({
+            ...prevState,
+            [content]: !prevState[content]
+        }));
+    };
 
     return (
         <>
@@ -30,14 +40,15 @@ function Task({ name, onClose, onEdit, handleSchedule }) {
 
             <button onClick={onClose}>remove</button>
             <button onClick={handleEdit}>{isEditing ? "Save" : "Edit"}</button>
-            <button>notify when</button>
-
-            <div>
-                <input type="time" onChange={(e) => {
-                    setTime(e.target.value);
-                }} />
-                <button onClick={() => handleSchedule({ name: newName, time: time })}>schedule</button>
-            </div>
+            <button onClick={() => toggleContent('content1')}>notify when</button>
+            {visibility.content1 &&
+                <div>
+                    <input type="time" onChange={(e) => {
+                        setTime(e.target.value);
+                    }} />
+                    <button onClick={() => handleSchedule({ name: newName, time: time })}>schedule</button>
+                </div>
+            }
         </>
     )
 }
