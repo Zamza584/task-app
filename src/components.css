@@ -1,0 +1,11 @@
+.scheduled-tasks p {
+  display: inline;
+}
+
+.scheduled-tasks label {
+  display: inline-block;
+}
+
+.scheduled-tasks label:hover {
+  transform: translate(0, 3px);
+}

@@ -34,13 +34,15 @@ function Home() {
   }
 
   return (
-    <div>
-      <h1>TASK APP</h1>
-      <Link to="/admin">create new task</Link>
-      <div>create a new task simply by clicking here</div>
-      <button onClick={handleTasks}>new task</button>
+    <div className='task-container'>
+      <h1>Task Application</h1>
+      <div className="text-block-1">
+        <p>Task application was made to simplify your daily tasks</p>
+        <p>Create a new task for today and schedule it to save it</p>
+      </div>
+
       <div>
-        <label htmlFor="task">task</label>
+        <label htmlFor="task">Task</label>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -49,6 +51,7 @@ function Home() {
         >
           <input type="text" id='task' value={text} onChange={e => handleChange(e)} />
         </form>
+        <button onClick={handleTasks}>new task</button>
       </div>
       <div className="results">
         {
@@ -63,7 +66,7 @@ function Home() {
           ))
         }
       </div>
-      <div>
+      <div className='scheduled-tasks'>
         <ScheduledTasks tasks={scheduledTasks} />
       </div>
     </div>

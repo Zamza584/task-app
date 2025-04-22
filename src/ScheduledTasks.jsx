@@ -14,12 +14,16 @@ export default function ScheduledTasks({ tasks }) {
     return (
         <>
             {tasks.length > 0 && <h1>Scheduled Tasks</h1>} {/*inline conditions*/}
+
             {console.log(tasks)}
+
+
             {(tasks === undefined) ? "" :
                 tasks.map((task, index) => (
                     <ScheduledTask key={index} name={task.name} time={task.time} />
                 ))
             }
+
         </>
     )
 }

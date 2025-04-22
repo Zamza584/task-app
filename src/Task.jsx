@@ -35,12 +35,15 @@ function Task({ name, onClose, onEdit, handleSchedule }) {
                     />
                 </div>
             ) : (
-                <div>task {newName}</div >
+                <div>Task: {newName}</div >
             )}
+            <div className="btn-container">
+                <button onClick={onClose}>remove</button>
+                <button onClick={handleEdit}>{isEditing ? "Save" : "Edit"}</button>
+                <button onClick={() => toggleContent('content1')}>notify when</button>
+            </div>
 
-            <button onClick={onClose}>remove</button>
-            <button onClick={handleEdit}>{isEditing ? "Save" : "Edit"}</button>
-            <button onClick={() => toggleContent('content1')}>notify when</button>
+
             {visibility.content1 &&
                 <div>
                     <input type="time" onChange={(e) => {
