@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Task from './Task'
 import ScheduledTasks from './ScheduledTasks'
 
@@ -67,7 +66,9 @@ function Home() {
         }
       </div>
       <div className='scheduled-tasks'>
-        <ScheduledTasks tasks={scheduledTasks} />
+        <ScheduledTasks
+          tasks={scheduledTasks}
+          setTasks={setScheduledTasks} />
       </div>
     </div>
   )

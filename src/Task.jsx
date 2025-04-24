@@ -37,6 +37,7 @@ function Task({ name, onClose, onEdit, handleSchedule }) {
             ) : (
                 <div>Task: {newName}</div >
             )}
+            
             <div className="btn-container">
                 <button onClick={onClose}>remove</button>
                 <button onClick={handleEdit}>{isEditing ? "Save" : "Edit"}</button>
