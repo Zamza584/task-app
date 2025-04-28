@@ -39,8 +39,7 @@ function Home() {
         <p>Task application was made to simplify your daily tasks</p>
         <p>Create a new task for today and schedule it to save it</p>
       </div>
-
-      <div>
+      <div className='task-input'>
         <label htmlFor="task">Task</label>
         <form
           onSubmit={(e) => {
@@ -70,6 +69,14 @@ function Home() {
           tasks={scheduledTasks}
           setTasks={setScheduledTasks} />
       </div>
+
+      <div className='right-sidebar'>
+        <div className="sidebar-content">
+          <button>Save Tasks for Today</button>
+          <button>See Calendar</button>
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -6,3 +6,21 @@
   display: inline-block;
   cursor: pointer;
 }
+
+.task-input input {
+  padding: 1.5px 4.5px;
+}
+
+.right-sidebar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translate(-5%, 50%);
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: row;
+  transform: rotate(90deg);
+  transform-origin: right center;
+}
