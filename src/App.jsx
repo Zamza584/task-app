@@ -1,11 +1,10 @@
-import './App.css'
-import Admin from './Admin';
-import Home from './Home';
+import './css/App.css'
+import Admin from './pages/Admin';
+import Home from './pages/home';
 import { Routes, Route } from "react-router-dom"
 
 
 function App() {
-
   return (
     <>
       <Routes>

@@ -1,5 +1,14 @@
+/* scheduled tasks */
 .scheduled-tasks p {
-  display: inline;
+  display: inline-block;
+  padding: 0.2rem 0.2rem; 
+  box-sizing: border-box;
+  
+}
+
+.scheduled-tasks p:hover {
+  border: 2px solid #000000;
+  border-radius: 0.5rem;
 }
 
 .scheduled-tasks label {
@@ -7,10 +16,13 @@
   cursor: pointer;
 }
 
+
+/* task input */
 .task-input input {
   padding: 1.5px 4.5px;
 }
 
+/* side bar  */
 .right-sidebar {
   position: fixed;
   right: -15px;

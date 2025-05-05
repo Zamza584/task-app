@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Task from './Task'
-import ScheduledTasks from './ScheduledTasks'
+import Task from '../components/Task'
+import ScheduledTasks from '../components/ScheduledTasks'
 
 function Home() {
   const [tasks, setTasks] = useState([])

@@ -5,6 +5,7 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
     const [styleTask, setStyleTask] = useState({
         transform: 'translate(-10px, 3px)',
         opacity: '0',
+        display: "none"
     });
 
     const [toggleSchedule, setToggleSchedule] = useState(true)
@@ -28,7 +29,7 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
     }
 
     return (
-        <div>
+        <div className="scheduled-task">
             {
                 time ? <p
                     onClick={() => transformLabel()}>
