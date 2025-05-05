@@ -25,7 +25,7 @@ function Home() {
       prevTasks.map((task) =>
         task.id === id ? { ...task, name: newName } : task
       )
-    )
+    )     
   }
 
   function handleSchedule(scheduledTask) {
@@ -72,11 +72,9 @@ function Home() {
 
       <div className='right-sidebar'>
         <div className="sidebar-content">
-          <button>Save Tasks for Today</button>
-          <button>See Calendar</button>
+          <button>Save Tasks</button>
         </div>
       </div>
-
     </div>
   )
 }

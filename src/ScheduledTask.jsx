@@ -5,8 +5,9 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
     const [styleTask, setStyleTask] = useState({
         transform: 'translate(-10px, 3px)',
         opacity: '0',
-
     });
+
+    const [toggleSchedule, setToggleSchedule] = useState(true)
 
     function formatTime(timeString) {
         const [hourString, minute] = timeString.split(":");
@@ -14,9 +15,11 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
         return (hour % 12 || 12) + ":" + minute + (hour < 12 ? "AM" : "PM");
     }
 
-    function transformLabel(active) {
+    function transformLabel() {
+        setToggleSchedule(prev => !prev)
+
         setStyleTask({
-            transform: active
+            transform: toggleSchedule
                 ? 'translate(0px, 3px)' : 'translate(-40px, 3px)',
             opacity: 1,
             transition: "opacity 2s, transform 1s"
@@ -28,11 +31,11 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
         <div>
             {
                 time ? <p
-                    onClick={() => transformLabel(true)}>
+                    onClick={() => transformLabel()}>
                     Task: {name} at {formatTime(time)}
                 </p>
                     : <p
-                        onClick={() => transformLabel(true)}>
+                        onClick={() => transformLabel()}>
                         Task: {name}
                     </p>
             }

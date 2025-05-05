@@ -13,14 +13,22 @@
 
 .right-sidebar {
   position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translate(-5%, 50%);
+  right: -15px;
+  top: 0;
+  margin-right: 0.8rem;
+  transform: translate(0%, 50%);
 }
 
 .sidebar-content {
   display: flex;
   flex-direction: row;
-  transform: rotate(90deg);
   transform-origin: right center;
+}
+
+.sidebar-content button {
+  padding: 20px 5px;
+  word-spacing: 0px;
+  letter-spacing: -7px;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
