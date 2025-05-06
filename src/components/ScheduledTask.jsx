@@ -5,7 +5,7 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
     const [styleTask, setStyleTask] = useState({
         transform: 'translate(-10px, 3px)',
         opacity: '0',
-        display: "none"
+        'pointer-events': 'none'
     });
 
     const [toggleSchedule, setToggleSchedule] = useState(true)
@@ -21,9 +21,10 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
 
         setStyleTask({
             transform: toggleSchedule
-                ? 'translate(0px, 3px)' : 'translate(-40px, 3px)',
-            opacity: 1,
-            transition: "opacity 2s, transform 1s"
+                ? 'translate(0px, 3px)' : 'translate(-10px, 3px)',
+            opacity: toggleSchedule ? 1 : 0,
+            transition: "opacity 2s, transform 1s", 
+            'pointer-events': toggleSchedule ? "auto" : "none"
 
         })
     }
