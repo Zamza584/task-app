@@ -1,15 +1,64 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Task from '../components/Task'
 import ScheduledTasks from '../components/ScheduledTasks'
+import { useCookies } from 'react-cookie'
 
 function Home() {
+  const [cookies, setCookie] = useCookies(["appState"])
+
   const [tasks, setTasks] = useState([])
   const [text, setText] = useState("")
   const [scheduledTasks, setScheduledTasks] = useState([])
+  const [error, setError] = useState()
+
+
+  useEffect(() => {
+    const savedState = cookies.appState;
+    
+    if (savedState) {
+      try {
+        if (savedState.tasks) setTasks(savedState.tasks);
+        if (savedState.text !== undefined) setText(savedState.text)
+        if (savedState.scheduledTasks) setScheduledTasks(savedState.scheduledTasks);
+
+      } catch (err) {
+        console.error("Invalid cookie content:", err);
+      }
+    }
+
+  }, [])
+
+  useEffect(() => {
+    try {
+      const state = { tasks, text, scheduledTasks };
+      const stringified = JSON.stringify(state); 
+      console.log("Setting cookie:", stringified); 
+      setCookie("appState", stringified, { path: "/", maxAge: 604800 });
+    } catch (e) {
+      console.error("Failed to stringify state:", e);
+    }
+
+  }, [tasks, scheduledTasks])
 
   function handleTasks() {
+    if (text === "") {
+      setError(() =>
+        <div>
+          <p className='error-message'>Please enter a value</p>
+        </div>)
+      return
+    }
+
     setTasks(prevTasks => [...prevTasks, { id: Date.now(), name: text }]);
     setText("");
+    setError();
+
+    // const state = {
+    //   tasks: newTasks,
+    //   text: "",
+    //   scheduledTasks,
+    // };
+    // setCookie("appState", JSON.stringify(state), { path: "/", maxAge: 604800 });
   }
 
   function handleChange(e) {
@@ -25,7 +74,7 @@ function Home() {
       prevTasks.map((task) =>
         task.id === id ? { ...task, name: newName } : task
       )
-    )     
+    )
   }
 
   function handleSchedule(scheduledTask) {
@@ -48,6 +97,7 @@ function Home() {
           }}
         >
           <input type="text" id='task' value={text} onChange={e => handleChange(e)} />
+          {error}
         </form>
         <button onClick={handleTasks}>new task</button>
       </div>

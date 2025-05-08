@@ -21,7 +21,7 @@ export default function ScheduledTask({ name, time, removeScheduledTask }) {
 
         setStyleTask({
             transform: toggleSchedule
-                ? 'translate(0px, 3px)' : 'translate(-10px, 3px)',
+                ? 'translate(0px, 3px)' : 'translate(-5px, 3px)',
             opacity: toggleSchedule ? 1 : 0,
             transition: "opacity 2s, transform 1s", 
             'pointer-events': toggleSchedule ? "auto" : "none"

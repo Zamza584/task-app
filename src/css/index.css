@@ -38,3 +38,7 @@ button:hover {
 .btn-container > *:not(:first-child) {
   margin-left: 0.4rem;
 }
+
+.error-message { 
+  color: #b83c3c;
+}
