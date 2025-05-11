@@ -1,0 +1,6 @@
+PROJECT IDEAS 
+
+- Calander book to click on the specific date and load up the right task. 
+- save tasks function to save up all the tasks for the user.
+- login page to save user information but you can also save information without logging in.
+

@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Task from '../components/Task'
 import ScheduledTasks from '../components/ScheduledTasks'
 import { useCookies } from 'react-cookie'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const [cookies, setCookie] = useCookies(["appState"])
@@ -28,6 +29,7 @@ function Home() {
 
   }, [])
 
+  // cookies are set up when tasks or scheduledtasks are changed
   useEffect(() => {
     try {
       const state = { tasks, text, scheduledTasks };
@@ -53,12 +55,6 @@ function Home() {
     setText("");
     setError();
 
-    // const state = {
-    //   tasks: newTasks,
-    //   text: "",
-    //   scheduledTasks,
-    // };
-    // setCookie("appState", JSON.stringify(state), { path: "/", maxAge: 604800 });
   }
 
   function handleChange(e) {
@@ -122,7 +118,7 @@ function Home() {
 
       <div className='right-sidebar'>
         <div className="sidebar-content">
-          <button>Save Tasks</button>
+          <button><Link to="/login">Save Task</Link></button>
         </div>
       </div>
     </div>
