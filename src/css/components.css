@@ -49,3 +49,17 @@
   text-decoration: none;
   color: inherit;
 }
+
+/* login */
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin-bottom: 0.3rem;
+}
+
+.form-input:focus {
+  outline: 2.5px solid #222b56; /* light beige color */
+}

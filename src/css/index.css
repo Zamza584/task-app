@@ -42,3 +42,9 @@ button:hover {
 .error-message { 
   color: #b83c3c;
 }
+
+input {
+  padding: 1.5px 4.5px;
+}
+
+
