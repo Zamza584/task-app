@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Task from '../components/Task'
 import ScheduledTasks from '../components/ScheduledTasks'
 import { useCookies } from 'react-cookie'
