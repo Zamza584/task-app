@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const UserModel = require("./models/User");
 
 const app = express();
 
@@ -18,6 +19,12 @@ mongoose
 
 app.get("/", (req, res) => {
   res.send("welcome to my api");
+});
+
+app.post("/register", (req, res) => {
+  UserModel.create(req.body)
+    .then((user) => res.json(user))
+    .catch((err) => res.json(err));
 });
 
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));
