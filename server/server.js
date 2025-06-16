@@ -10,6 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use("/", require("./routes/authentication"));
+
 const PORT = process.env.PORT || 5000;
 
 mongoose
@@ -22,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  UserModel.create(req.body)
+  UserModel.create({ uername, email, password })
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });
