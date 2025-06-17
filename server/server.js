@@ -23,8 +23,9 @@ app.get("/", (req, res) => {
   res.send("welcome to my api");
 });
 
+
 app.post("/register", (req, res) => {
-  UserModel.create({ uername, email, password })
+  UserModel.create({ userName, email, password })
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });
