@@ -1,0 +1,16 @@
+.register-page h1 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.register-page input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin-bottom: 0.3rem;
+}
+
+.register-page input:focus {
+  outline: 2.5px solid #222b56; /* light beige color */
+}

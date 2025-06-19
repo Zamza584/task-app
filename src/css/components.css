@@ -1,9 +1,8 @@
 /* scheduled tasks */
 .scheduled-tasks p {
   display: inline-block;
-  padding: 0.2rem 0.2rem; 
+  padding: 0.2rem 0.2rem;
   box-sizing: border-box;
-  
 }
 
 .scheduled-tasks p:hover {
@@ -15,7 +14,6 @@
   display: inline-block;
   cursor: pointer;
 }
-
 
 /* task input */
 .task-input input {
@@ -45,12 +43,17 @@
   text-orientation: upright;
 }
 
-.sidebar-content a { 
+.sidebar-content a {
   text-decoration: none;
   color: inherit;
 }
 
 /* login */
+
+.login-page h1 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
 
 .form-input {
   width: 100%;
