@@ -1,5 +1,6 @@
 const UserModel = require("../models/User");
-const { hashPassword, comparedPassword } = require("../helpers/auth");
+const { hashPassword, comparePasswords } = require("../helpers/auth");
+const jwt = require("jsonwebtoken");
 
 const test = (req, res) => {
   res.json("test is working");
@@ -31,13 +32,12 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const hashedPassword = await hashPassword(password) 
-
+    const hashedPassword = await hashPassword(password);
 
     const user = await UserModel.create({
       userName,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     return res.json(user);
@@ -52,14 +52,31 @@ const loginUser = async (req, res) => {
 
     const user = await UserModel.findOne({ userName });
 
-    //match password
-    if (password === user.password) {
-      console.log("logged in");
-      res.json({ message: "user logged in" });
+    if (!userName) {
+      res.json({
+        error: "Please enter a username",
+      });
     }
-    console.log("inside here");
+
+    const match = await comparePasswords(password, user.password);
+
+    if (match) {
+      jwt.sign(
+        { userName: user.userName, id: user._id },
+        process.env.JWT_SECRET,
+        {},
+        (err, token) => {
+          if (err) throw err;
+          res.cookie("token", token).json(user);
+        }
+      );
+    }
+
+    if (!match) {
+      res.json({ error: "passwords dont match" });
+    }
   } catch (error) {
-    console.log("failed to login");
+    res.json({ error: "passwords dont match" });
   }
 };
 

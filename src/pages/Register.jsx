@@ -12,12 +12,11 @@ export default function Register() {
 
     function handleSubmit(e) {
         e.preventDefault(e)
-        axios.post('http://localhost:5000/register', { userName, email, password })
+        axios.post('/register', { userName, email, password })
             .then(result => {
                 setResult(result)
             })
             .catch(error => console.log(error));
-
         if (!result.data.error) {
             navigate("/login")
         }
@@ -29,15 +28,15 @@ export default function Register() {
             <form onSubmit={handleSubmit} method="post" className="register-form">
                 <div className="register-username">
                     <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username" onChange={(e) => { setUserName(e.target.value) }} novalidate />
+                    <input type="text" id="username" name="username" onChange={(e) => { setUserName(e.target.value) }} noValidate />
                 </div>
                 <div className="register-email">
                     <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" onChange={(e) => { setEmail(e.target.value) }} novalidate />
+                    <input type="email" id="email" name="email" onChange={(e) => { setEmail(e.target.value) }} noValidate />
                 </div>
                 <div className="register-password">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" onChange={(e) => { setPassword(e.target.value) }} novalidate />
+                    <input type="password" id="password" name="password" onChange={(e) => { setPassword(e.target.value) }} noValidate />
                 </div>
                 <div className='error-message'>{result ? result.data.error : ""}</div>
                 <button type="submit" className="submit-btn">Register</button>

@@ -1,18 +1,30 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+    const navigate = useNavigate()
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
+    const [result, setResult] = useState();
 
     function handleSubmit(e) {
-        e.preventDefault(e)
-        axios.post('http://localhost:5000/login', { userName, password })
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => console.log(error));
+
+        try {
+            e.preventDefault()
+            axios.post('/login', { userName, password })
+                .then(result => {
+                    setResult(result)
+                })
+                .catch(error => console.log(error));
+
+            if (!result.data.error) {
+                navigate("/")
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -27,6 +39,7 @@ const Login = () => {
                     <label htmlFor="password" className="form-label">Password:</label>
                     <input type="password" id="password" name="password" className="form-input" onChange={(e) => { setPassword(e.target.value) }} />
                 </div>
+                <div className='error-message'>{result ? result.data.error : ""}</div>
                 <button type="submit" className="form-button">Login</button>
             </form>
             <p className="register-link">

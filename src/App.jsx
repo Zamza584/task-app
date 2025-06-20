@@ -4,6 +4,10 @@ import Home from './pages/home';
 import { Routes, Route } from "react-router-dom"
 import Login from './pages/Login';
 import Register from './pages/Register';
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:5000'
+axios.defaults.withCredentials = true
 
 function App() {
   return (
