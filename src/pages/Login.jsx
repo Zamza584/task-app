@@ -7,9 +7,14 @@ const Login = () => {
     const navigate = useNavigate()
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
-    const [result, setResult] = useState();
+    const [result, setResult] = useState({
+        data: {
+            error: ""
+        }
+    }
+    );
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
 
         try {
             e.preventDefault()
@@ -33,11 +38,11 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="login-form">
                 <div className="form-group-username">
                     <label htmlFor="username" className="form-label">Username:</label>
-                    <input type="text" id="username" name="username" className="form-input" onChange={(e) => { setUserName(e.target.value) }} />
+                    <input type="text" id="username" name="username" className="form-input" autoComplete="on" onChange={(e) => { setUserName(e.target.value) }} />
                 </div>
                 <div className="form-group-password">
                     <label htmlFor="password" className="form-label">Password:</label>
-                    <input type="password" id="password" name="password" className="form-input" onChange={(e) => { setPassword(e.target.value) }} />
+                    <input type="password" id="password" name="password" className="form-input" autoComplete="on" onChange={(e) => { setPassword(e.target.value) }} />
                 </div>
                 <div className='error-message'>{result ? result.data.error : ""}</div>
                 <button type="submit" className="form-button">Login</button>
