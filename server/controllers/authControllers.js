@@ -53,12 +53,25 @@ const loginUser = async (req, res) => {
     const user = await UserModel.findOne({ userName });
 
     if (!userName) {
-      res.json({
+      return res.json({
         error: "Please enter a username",
+      });
+    }
+    if (!password) {
+      return res.json({
+        error: "Please enter a password",
       });
     }
 
     const match = await comparePasswords(password, user.password);
+    console.log(match);
+    
+
+    if (!match) {
+      return res.json({
+        error: "passwords dont match",
+      });
+    }
 
     if (match) {
       jwt.sign(
@@ -71,12 +84,10 @@ const loginUser = async (req, res) => {
         }
       );
     }
-
-    if (!match) {
-      res.json({ error: "passwords dont match" });
-    }
   } catch (error) {
-    res.json({ error: "passwords dont match" });
+    res.json({
+      error: "passwords dont match",
+    });
   }
 };
 

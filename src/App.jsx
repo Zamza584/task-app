@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import axios from 'axios'
 import { UserContextProvider } from './context/userContext';
+import Dashboard from './pages/Dashboard';
 
 axios.defaults.baseURL = 'http://localhost:5000'
 axios.defaults.withCredentials = true
@@ -18,6 +19,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </UserContextProvider>
   )

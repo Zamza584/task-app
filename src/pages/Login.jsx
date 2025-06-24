@@ -11,22 +11,18 @@ const Login = () => {
         data: {
             error: ""
         }
-    }
-    );
+    });
 
     async function handleSubmit(e) {
-
         try {
             e.preventDefault()
-            axios.post('/login', { userName, password })
-                .then(result => {
-                    setResult(result)
-                })
-                .catch(error => console.log(error));
-
-            if (!result.data.error) {
-                navigate("/")
+            const res = await axios.post('/login', { userName, password })
+            setResult(res);
+            
+            if (!res.data.error) {
+                navigate("/dashboard")
             }
+
         } catch (error) {
             console.log(error);
         }
