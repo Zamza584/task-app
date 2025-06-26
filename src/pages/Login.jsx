@@ -19,6 +19,8 @@ const Login = () => {
             const res = await axios.post('/login', { userName, password })
             setResult(res);
             
+            console.log(res.data.error);
+            
             if (!res.data.error) {
                 navigate("/dashboard")
             }

@@ -28,15 +28,15 @@ export default function Register() {
             <form onSubmit={handleSubmit} method="post" className="register-form">
                 <div className="register-username">
                     <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username" onChange={(e) => { setUserName(e.target.value) }} noValidate />
+                    <input type="text" id="username" name="username" onChange={(e) => { setUserName(e.target.value) }} noValidate autoComplete="on" />
                 </div>
                 <div className="register-email">
                     <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" onChange={(e) => { setEmail(e.target.value) }} noValidate />
+                    <input type="email" id="email" name="email" onChange={(e) => { setEmail(e.target.value) }} noValidate autoComplete="on" />
                 </div>
                 <div className="register-password">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" onChange={(e) => { setPassword(e.target.value) }} noValidate />
+                    <input type="password" id="password" name="password" onChange={(e) => { setPassword(e.target.value) }} noValidate autoComplete="on" />
                 </div>
                 <div className='error-message'>{result ? result.data.error : ""}</div>
                 <button type="submit" className="submit-btn">Register</button>
