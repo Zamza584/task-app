@@ -34,13 +34,14 @@ const registerUser = async (req, res) => {
 
     const hashedPassword = await hashPassword(password);
 
-    const user = await UserModel.create({
+    await UserModel.create({
       userName,
       email,
       password: hashedPassword,
     });
 
-    return res.json(user);
+    return console.log("user created");
+    
   } catch (error) {
     console.log(error);
   }
@@ -80,7 +81,7 @@ const loginUser = async (req, res) => {
         {},
         (err, token) => {
           if (err) throw err;
-          res.cookie("token", token).json(user);
+          res.cookie("token", token).json("created token")
         }
       );
     }
@@ -103,5 +104,10 @@ const getProfile = (req, res) => {
     res.json(null);
   }
 };
+
+
+const logoutUser = (req, res) => { 
+  
+}
 
 module.exports = { test, registerUser, loginUser, getProfile };

@@ -5,17 +5,17 @@ import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
 import axios from 'axios'
+import PopUps from '../components/PopUps'
 
 
 function Home() {
   const [cookies, setCookie] = useCookies(["appState"])
-
   const [tasks, setTasks] = useState([])
   const [text, setText] = useState("")
   const [scheduledTasks, setScheduledTasks] = useState([])
   const [error, setError] = useState()
-
   const { user } = useContext(UserContext)
+  const [popup, setPopup] = useState(false)
 
   useEffect(() => {
     const savedState = cookies.appState;
@@ -33,8 +33,8 @@ function Home() {
 
   }, [])
 
-  // cookies are set up when tasks or scheduledtasks are changed
   useEffect(() => {
+    // cookies are set up when tasks or scheduledtasks are changed
     try {
       const state = { tasks, text, scheduledTasks };
       const stringified = JSON.stringify(state);
@@ -47,6 +47,9 @@ function Home() {
   }, [tasks, scheduledTasks])
 
   function handleTasks() {
+    /* 
+    handles the task and checks if there is any errors
+    */
     if (text === "") {
       setError(() =>
         <div>
@@ -81,10 +84,14 @@ function Home() {
     setScheduledTasks(prevTasks => [...prevTasks, scheduledTask])
   }
 
+
   async function handleSave() {
+    /*Handles saved functions*/
+
     const { tasks, scheduledTasks } = cookies.appState
-    
-    const res = await axios.post("/tasks", { tasks, scheduledTasks })
+    const res = await axios.post("/tasks", { user, tasks, scheduledTasks })
+    setPopup(true)
+
   }
 
   return (
@@ -126,9 +133,14 @@ function Home() {
           setTasks={setScheduledTasks} />
       </div>
 
+      {popup ? (<PopUps message="Task Saved" />) : (null)}
+
+
       <div className='right-sidebar'>
         <div className="sidebar-content">
           {user ? (<button onClick={handleSave} >Save Task</button>) : (<button><Link to="/login">Save Task</Link></button>)}
+          {user ? (<button><Link to="/dashboard">Dashboard</Link></button>) : ("")}
+          {user ? (<button><Link to="/">Logout</Link></button>) : ("")}
         </div>
       </div>
     </div>

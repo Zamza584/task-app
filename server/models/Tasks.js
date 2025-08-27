@@ -2,8 +2,8 @@ const mongoose = require("mongoose")
 
 const TasksSchema = mongoose.Schema({
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "users"
+    type: String,
+    ref: "users",
   },
   tasks: [
     {
