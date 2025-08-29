@@ -8,13 +8,18 @@ const saveTasks = async (req, res) => {
     const userName = user.userName;
     const dbuser = await UserModel.findOne({ userName });
     const userId = dbuser._id.toString();
-    
-    
-    const taskList = await TasksModel.create({
-      userId,
-      tasks,
-      scheduledTasks,
-    });
+
+    const taskList = await TasksModel.replaceOne(
+      { userId: userId },
+      {
+        userId: userId,
+        tasks: tasks,
+        scheduledTasks: scheduledTasks,
+      },
+      {
+        upsert: true
+      }
+    );
 
     res.json(taskList);
   } catch (error) {

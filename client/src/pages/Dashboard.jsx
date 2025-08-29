@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import '../css/dashboard.css';
 import '../css/components.css';
 import '../css/index.css';
+import axios from 'axios';
 
 export default function Dashboard() {
     const { user } = useContext(UserContext);
@@ -13,17 +14,14 @@ export default function Dashboard() {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        if (cookies.appState && cookies.appState.tasks) {
-            setTasks(cookies.appState.tasks);
-        }
-    }, [cookies]);
+        axios.get()
+    }, []);
 
     return (
         <div className="dashboard-container">
             <h1 className="dashboard-title">Dashboard</h1>
             <div className='btn' style={{ marginBottom: '1.5rem' }}>
                 <button><Link to="/">Back to Task Application </Link></button>
-
             </div>
             {!!user && (
                 <div className="dashboard-welcome">

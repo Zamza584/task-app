@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
 import axios from 'axios'
 import PopUps from '../components/PopUps'
+import '../css/home.css'
 
 
 function Home() {
@@ -18,6 +19,7 @@ function Home() {
   const [popup, setPopup] = useState(false)
 
   useEffect(() => {
+    
     const savedState = cookies.appState;
 
     if (savedState) {
@@ -87,10 +89,18 @@ function Home() {
 
   async function handleSave() {
     /*Handles saved functions*/
-
     const { tasks, scheduledTasks } = cookies.appState
-    const res = await axios.post("/tasks", { user, tasks, scheduledTasks })
+    await axios.post("/tasks", { user, tasks, scheduledTasks })
     setPopup(true)
+    setTimeout(() => {
+      setPopup(false)
+    }, 1000);
+  }
+
+  async function handleLogout() {
+    axios.get("/logout")
+    window.location.reload();
+
 
   }
 
@@ -140,7 +150,7 @@ function Home() {
         <div className="sidebar-content">
           {user ? (<button onClick={handleSave} >Save Task</button>) : (<button><Link to="/login">Save Task</Link></button>)}
           {user ? (<button><Link to="/dashboard">Dashboard</Link></button>) : ("")}
-          {user ? (<button><Link to="/">Logout</Link></button>) : ("")}
+          {user ? (<button onClick={handleLogout}>Logout</button>) : ("")}
         </div>
       </div>
     </div>

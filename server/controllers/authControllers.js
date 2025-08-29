@@ -41,7 +41,6 @@ const registerUser = async (req, res) => {
     });
 
     return console.log("user created");
-    
   } catch (error) {
     console.log(error);
   }
@@ -66,7 +65,6 @@ const loginUser = async (req, res) => {
 
     const match = await comparePasswords(password, user.password);
     console.log(match);
-    
 
     if (!match) {
       return res.json({
@@ -81,7 +79,7 @@ const loginUser = async (req, res) => {
         {},
         (err, token) => {
           if (err) throw err;
-          res.cookie("token", token).json("created token")
+          res.cookie("token", token).json("created token");
         }
       );
     }
@@ -105,9 +103,10 @@ const getProfile = (req, res) => {
   }
 };
 
+const logoutUser = (req, res) => {
+  res.clearCookie("token", { httpOnly: true });
 
-const logoutUser = (req, res) => { 
-  
-}
+  return res.sendStatus(204);
+};
 
-module.exports = { test, registerUser, loginUser, getProfile };
+module.exports = { test, registerUser, loginUser, getProfile, logoutUser };

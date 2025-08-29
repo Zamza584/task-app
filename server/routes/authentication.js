@@ -5,7 +5,8 @@ const {
   test,
   registerUser,
   loginUser,
-  getProfile
+  getProfile,
+  logoutUser,
 } = require("../controllers/authControllers");
 const { saveTasks } = require("../controllers/taskControllers.js");
 
@@ -19,7 +20,8 @@ router.use(
 router.get("/", test);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/profile", getProfile)
-router.post("/tasks", saveTasks)
+router.get("/profile", getProfile);
+router.post("/tasks", saveTasks);
+router.get("/logout", logoutUser);
 
 module.exports = router;

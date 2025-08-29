@@ -1,4 +1,6 @@
+
 function Popups({ message }) {
+
     return (
         <div>
             <p>{message}</p>

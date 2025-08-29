@@ -22,16 +22,16 @@
 
 /* side bar  */
 .right-sidebar {
-  position: fixed;
+  position: absolute;
   right: -15px;
-  top: 0;
+  top: 50%;
   margin-right: 0.8rem;
-  transform: translate(0%, 50%);
+  transform: translateY(-50%)
 }
 
 .sidebar-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   transform-origin: right center;
 }
 
@@ -41,6 +41,7 @@
   letter-spacing: -7px;
   writing-mode: vertical-rl;
   text-orientation: upright;
+  margin: 0;
 }
 
 .sidebar-content a {
@@ -49,7 +50,6 @@
 }
 
 /* login */
-
 .login-page h1 {
   margin-bottom: 0.5rem;
   text-align: center;
